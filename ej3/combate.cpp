@@ -232,7 +232,7 @@ int main() {
     
     // MI PERSONAJE GUERRERO
     shared_ptr<Personaje> p1 = PersonajeFactory::crearPersonajeArmado(TipoPersonaje::GUERRERO, 1);
-
+    cout<< endl;
     cout << "NOMBRE DE MI PERSONAJE GUERRERO" << endl;
     cout << "Nombre: " << p1->getNombre() << endl;
     cout<< endl;
@@ -245,7 +245,7 @@ int main() {
     shared_ptr<Personaje> p2 = crearPersonajeAleatorio();
 
     cout<< endl;
-    cout << "NOMBRE DEL RANDOM" << endl;
+    cout << "NOMBRE DEL PERSONAJE RANDOM" << endl;
     //shared_ptr<Personaje> p1 = PersonajeFactory::crearPersonaje(TipoPersonaje::GUERRERO);
     cout << "Nombre: " << p2->getNombre() << endl;
     
@@ -254,7 +254,7 @@ int main() {
         p2->agregarArma(item);
 
         cout<< endl;
-        cout << "INFORMACION DE ITEM MAGICO" << endl;
+        cout << "INFORMACION DEL ITEM MAGICO" << endl;
         p2->getArma()->showInfo();
     }
     else {
@@ -262,7 +262,7 @@ int main() {
         p2->agregarArma(arma);
 
         cout<< endl;
-        cout << "INFORMACION DE ARMA DE COMBATE" << endl;
+        cout << "INFORMACION DEL ARMA DE COMBATE" << endl;
         p2->getArma()->showInfo();
         cout<< endl;
     }  
