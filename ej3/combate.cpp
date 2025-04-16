@@ -75,7 +75,7 @@ shared_ptr<Personaje> crearPersonajeAleatorio() {
                 case TipoMago::NIGROMANTE : {
                     int energiaOscura = rand() % 101; // valores de 0 a 100
                     int cantidadDeAlmas = rand() % 21; // valores de 0 a 20
-                    return make_shared<Brujo>(inteligencia, edad, energiaOscura, cantidadDeAlmas);
+                    return make_shared<Nigromante>(inteligencia, edad, energiaOscura, cantidadDeAlmas);
                 }
             }
         }
@@ -153,7 +153,7 @@ shared_ptr<ArmasDeCombate> crearArmaDeCombateAleatorio() {
 }
 
 pair<Ataque, Ataque> definirAtaque(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2) {
-    cout << "El jugador 1 tiene " << p1->getHP() << "HP y el jugador 2 tiene " << p2->getHP() << "HP." << endl;
+    cout << "El jugador 1  tiene " << p1->getHP() << "HP y el jugador 2 tiene " << p2->getHP() << "HP." << endl;
     cout << "Su opción: (1) Golpe Fuerte, (2) Golpe Rápido, (3) Defensa y Golpe: ";
     int ataque1;
     cin >> ataque1;
@@ -164,24 +164,36 @@ pair<Ataque, Ataque> definirAtaque(shared_ptr<Personaje> p1, shared_ptr<Personaj
 }
 
 shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2) {
+
+    cout << "COMBATE ENTRE " << p1->getNombre() << " y " << p2->getNombre() << endl;
+    cout << endl;
+
     while (p1->estaVivo() && p2->estaVivo()) {
         pair<Ataque, Ataque> ataques = definirAtaque(p1, p2);
         
         if (ataques.first == ataques.second) {
+            cout << "\n Los ataques son iguales. Se vuelve a ingresar el ataque. \n";
             continue;
         }
 
         switch(ataques.first) {
             case Ataque::GOLPE_FUERTE : {
                 if (ataques.second == Ataque::GOLPE_RAPIDO) { // FUERTE > RAPIDO
+
+
                     int danio = p1->atacar();
+
                     p2->recibirDanio(danio);
-                    cout << "El " << p1->getNombre() << " ataca con " << p1->getArma() << " y hace " << danio << " puntos de daño." << endl;
+
+                    cout << "El " << p1->getNombre() << " ataca con " << p1->getArma()->getNombre() <<  " y hace " << danio << " puntos de daño." << endl;
                 }
                 else { // ataques.second == Ataque::DEFENSA_GOLPE --> FUERTE < DEFENSA_GOLPE
+
                     int danio = p2->atacar();
+
                     p1->recibirDanio(danio);
-                    cout << "El " << p2->getNombre() << " ataca con " << p2->getArma() << " y hace " << danio << " puntos de daño." << endl;
+
+                    cout << "El " << p2->getNombre() << " ataca con "  << p2->getArma()->getNombre() <<  " y hace " << danio << " puntos de daño." << endl;
                 }
                 break;
             }
@@ -189,12 +201,12 @@ shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2
                 if (ataques.second == Ataque::DEFENSA_GOLPE) { // RAPIDO > DEFENSA_GOLPE
                     int danio = p1->atacar();
                     p2->recibirDanio(danio);
-                    cout << "El " << p1->getNombre() << " ataca con " << p1->getArma() << " y hace " << danio << " puntos de daño." << endl;
+                    cout << "El " << p1->getNombre() << " ataca con " << p1->getArma()->getNombre() << " y hace " << danio << " puntos de daño." << endl;
                 }
                 else { // ataques.second == Ataque::GOLPE_FUERTE --> RAPIDO < FUERTE
                     int danio = p2->atacar();
                     p1->recibirDanio(danio);
-                    cout << "El " << p2->getNombre() << " ataca con " << p2->getArma() << " y hace " << danio << " puntos de daño." << endl;
+                    cout << "El " << p2->getNombre() << " ataca con " << p2->getArma()->getNombre() << " y hace " << danio << " puntos de daño." << endl;
                 }
                 break;
             }
@@ -202,12 +214,12 @@ shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2
                 if (ataques.second == Ataque::GOLPE_FUERTE) { // DEFENSA_GOLPE > FUERTE
                     int danio = p1->atacar();
                     p2->recibirDanio(danio);
-                    cout << "El " << p1->getNombre() << " ataca con " << p1->getArma() << " y hace " << danio << " puntos de daño." << endl;
+                    cout << "El " << p1->getNombre() << " ataca con " << p1->getArma()->getNombre() << " y hace " << danio << " puntos de daño." << endl;
                 }
                 else { // ataques.second == Ataque::GOLPE_RAPIDO --> DEFENSA_GOLPE < RAPIDO
                     int danio = p2->atacar();
                     p1->recibirDanio(danio);
-                    cout << "El " << p2->getNombre() << " ataca con " << p2->getArma() << " y hace " << danio << " puntos de daño." << endl;
+                    cout << "El " << p2->getNombre() << " ataca con " << p2->getArma()->getNombre() << " y hace " << danio << " puntos de daño." << endl;
                 }
                 break;
             }
@@ -217,23 +229,44 @@ shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2
 }
 
 int main() {
+    
+    // MI PERSONAJE GUERRERO
+    shared_ptr<Personaje> p1 = PersonajeFactory::crearPersonajeArmado(TipoPersonaje::GUERRERO, 1);
+
+    cout << "NOMBRE DE MI PERSONAJE GUERRERO" << endl;
+    cout << "Nombre: " << p1->getNombre() << endl;
+    cout<< endl;
+    cout << "INFORMACION DE MI ARMA DE COMBATE" << endl;
+    p1->getArma()->showInfo();
+
+
     // Creo personaje random y arma random
     srand(time(NULL));
-    shared_ptr<Personaje> p1 = crearPersonajeAleatorio();
+    shared_ptr<Personaje> p2 = crearPersonajeAleatorio();
+
+    cout<< endl;
+    cout << "NOMBRE DEL RANDOM" << endl;
+    //shared_ptr<Personaje> p1 = PersonajeFactory::crearPersonaje(TipoPersonaje::GUERRERO);
+    cout << "Nombre: " << p2->getNombre() << endl;
     
-    if (p1->getTipo() == TipoPersonaje::MAGO) {
+    if (p2->getTipo() == TipoPersonaje::MAGO) {
         shared_ptr<ItemsMagicos> item = crearItemMagicoAleatorio();
-        //item->showInfo();
-        p1->agregarArma(item);
+        p2->agregarArma(item);
+
+        cout<< endl;
+        cout << "INFORMACION DE ITEM MAGICO" << endl;
+        p2->getArma()->showInfo();
     }
     else {
         shared_ptr<ArmasDeCombate> arma = crearArmaDeCombateAleatorio();
-        //arma->showInfo();
-        p1->agregarArma(arma);
-    }
-    shared_ptr<Personaje> p2 = PersonajeFactory::crearPersonajeArmado(TipoPersonaje::GUERRERO, 1);
-    
+        p2->agregarArma(arma);
+
+        cout<< endl;
+        cout << "INFORMACION DE ARMA DE COMBATE" << endl;
+        p2->getArma()->showInfo();
+        cout<< endl;
+    }  
     
     shared_ptr<Personaje> winner = combate(p1, p2);
-    cout << "GANADOR: " << winner->getNombre() << " con " << winner->getHP() << "puntos de HP restantes: "  << endl;
+    cout << "GANADOR: " << winner->getNombre() << " con " << winner->getHP() << " puntos de HP restantes."  << endl;
 } 

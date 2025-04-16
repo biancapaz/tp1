@@ -8,7 +8,7 @@ class HachaSimple : public ArmasDeCombate {
         HachaSimple(string material, int peso_gr, bool conGema);
 
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
     
     private:
@@ -21,7 +21,7 @@ class HachaDoble : public ArmasDeCombate {
         HachaDoble(string material, int peso_gr, int largo_cm, bool filoExtra);
 
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
     
     private:
@@ -35,7 +35,7 @@ class Espada : public ArmasDeCombate {
         Espada( string material, int peso_gr, int largo_cm, bool tieneBrillo);
 
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
     
     private:
@@ -49,7 +49,7 @@ class Lanza : public ArmasDeCombate {
         Lanza(string material, int peso_gr, int largo_cm, int cantidadPuntas);
 
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
     
     private:
@@ -63,7 +63,7 @@ class Garrote : public ArmasDeCombate {
         Garrote(string material, int peso_gr, bool tienePicos, bool doblePunta);
 
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
     
     private:

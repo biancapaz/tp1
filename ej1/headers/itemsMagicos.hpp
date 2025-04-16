@@ -11,7 +11,7 @@ class Baston : public ItemsMagicos {
         Baston(int durabilidad, int largo_cm);
 
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
 
     private:
@@ -26,7 +26,7 @@ class LibroDeHechizos : public ItemsMagicos {
         LibroDeHechizos(int durabilidad);
         
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
 
         void setConBaston(bool cond);
@@ -43,7 +43,7 @@ class Pocion : public ItemsMagicos {
         Pocion(int durabilidad, string efecto, bool esParmanente);
         
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
         
     private:
@@ -57,7 +57,7 @@ class Amuleto : public ItemsMagicos {
         Amuleto(int durabilidad, bool bonoSurte);
 
         // Metodos
-        void usar() override;
+        bool usar() override;
         void showInfo() override;
 
         

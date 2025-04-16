@@ -8,14 +8,16 @@ using namespace std;
 Baston::Baston(int durabilidad, int largo_cm) : ItemsMagicos("Baston", durabilidad), largo_cm(largo_cm) {};
 
 // Metodos
-void Baston::usar() {
+bool Baston::usar() {
     if (durabilidad <= 0) {
-        cout << "El baston se ha agotado." << endl;
-        return;
+        cout << "El baston ya no funciona." << endl;
+        return false;
     }
 
     cout << "Usando el baston..." << endl;
     durabilidad--;
+
+    return true;
 };
 
 void Baston::showInfo() {
@@ -32,14 +34,15 @@ void Baston::showInfo() {
 LibroDeHechizos::LibroDeHechizos(int durabilidad) : ItemsMagicos("LibroDeHechizos", durabilidad) {};
 
 // Metodos
-void LibroDeHechizos::usar() {
+bool LibroDeHechizos::usar() {
     if (durabilidad <= 0) {
         cout << "El libro de hechizos ya no sirve." << endl;
-        return;
+        return false;
     }
 
     cout << "Usando el libro de hechizos..." << endl;
     durabilidad--;
+    return true;
 };
 
 void LibroDeHechizos::showInfo() {
@@ -67,14 +70,19 @@ void LibroDeHechizos::agregarHechizo(string hechizo) {
 Pocion::Pocion(int durabilidad, string efecto, bool esParmanente) : ItemsMagicos("Pocion", durabilidad), efecto(efecto), esPermanente(esParmanente) {};
 
 // Metodos
-void Pocion::usar() {
+bool Pocion::usar() {
     if (durabilidad <= 0) {
         cout << "La pocion se ha agotado." << endl;
-        return;
+        return false;
     }
 
     cout << "Usando la pocion..." << endl;
     durabilidad--;
+
+    if (efecto == "veneno" && esPermanente) {
+        danio += 10;
+    }
+    return true;
 };
 
 void Pocion::showInfo() {
@@ -92,14 +100,20 @@ void Pocion::showInfo() {
 Amuleto::Amuleto(int durabilidad, bool bonoSurte) : ItemsMagicos("Amuleto", durabilidad), bonoSuerte(bonoSurte) {};
 
 // Metodos
-void Amuleto::usar() { // se usa en defensa
+bool Amuleto::usar() { // se usa en defensa
     if (durabilidad <= 0) {
         cout << "El amuleto ya no sirve." << endl;
-        return;
+        return false;
     }
 
     cout << "Usando el amuleto..." << endl;
     durabilidad--;
+
+    if (bonoSuerte) {
+        danio += 4;
+    }
+
+    return true;
 };
 
 void Amuleto::showInfo() {

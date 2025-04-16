@@ -8,8 +8,14 @@ using namespace std;
 HachaSimple::HachaSimple( string material, int peso_gr, bool conGema) : ArmasDeCombate("Hacha Simple", material, peso_gr), conGema(conGema) {};
 
 // Metodos
-void HachaSimple::usar() {
+bool HachaSimple::usar() {
     cout << "Usando el hacha simple..." << endl;
+
+    if (conGema) {
+        danio += 5;
+    }
+
+    return true;
 };
 
 void HachaSimple::showInfo() {
@@ -26,8 +32,14 @@ void HachaSimple::showInfo() {
 HachaDoble::HachaDoble( string material, int peso_gr, int largo_cm, bool filoExtra) : ArmasDeCombate("Hacha Doble", material, peso_gr), largo_cm(largo_cm), filoExtra(filoExtra) {};
 
 // Metodos
-void HachaDoble::usar() {
+bool HachaDoble::usar() {
     cout << "Usando el hacha doble..." << endl;
+
+    if (largo_cm > 30 && filoExtra) {
+        danio += 8;
+    }
+
+    return true;
 };
 
 void HachaDoble::showInfo() {
@@ -45,8 +57,14 @@ void HachaDoble::showInfo() {
 Espada::Espada(string material, int peso_gr, int largo_cm, bool tieneBrillo) : ArmasDeCombate("Espada", material, peso_gr), largo_cm(largo_cm), tieneBrillo(tieneBrillo) {};
 
 // Metodos
-void Espada::usar() {
+bool Espada::usar() {
     cout << "Usando la espada..." << endl;
+
+    if (largo_cm > 30 && tieneBrillo) {
+        danio += 5;
+    }
+
+    return true;
 };
 
 void Espada::showInfo() {
@@ -64,8 +82,14 @@ void Espada::showInfo() {
 Lanza::Lanza(string material, int peso_gr, int largo_cm, int cantidadPuntas) : ArmasDeCombate("Lanza", material, peso_gr), largo_cm(largo_cm), cantidadPuntas(cantidadPuntas) {};
 
 // Metodos
-void Lanza::usar() {
+bool Lanza::usar() {
     cout << "Usando la lanza..." << endl;
+
+    if (largo_cm > 50 && cantidadPuntas >= 2) {
+        danio += 9;
+    }
+    
+    return true;
 };
 
 void Lanza::showInfo() {
@@ -83,8 +107,14 @@ void Lanza::showInfo() {
 Garrote::Garrote(string material, int peso_gr, bool tienePicos, bool doblePunta) : ArmasDeCombate("Garrote", material, peso_gr), tienePicos(tienePicos), doblePunta(doblePunta) {};
 
 // Metodos
-void Garrote::usar() {
+bool Garrote::usar() {
     cout << "Usando el garrote..." << endl;
+
+    if (tienePicos && doblePunta) {
+        danio += 10;
+    }
+
+    return true;
 };
 
 void Garrote::showInfo() {

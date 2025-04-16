@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-/*int main() {
+int main() {
     srand(time(NULL));
     int cantidadMagos = (rand() % 5) + 3;
     int cantidadGuerreros = (rand() % 5) + 3;
@@ -32,4 +32,4 @@ using namespace std;
     }
 
     return 0;
-} */
+} 

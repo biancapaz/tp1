@@ -1,5 +1,7 @@
 #include "armas.hpp"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 /*Implementacion Clase Abstracta ItemasMagicos*/ 
@@ -14,8 +16,22 @@ string ItemsMagicos::getNombre() {
 double ItemsMagicos::getDanio() {
     return danio;
 };
-void ItemsMagicos::recargar() {
-    durabilidad = 10; // Recarga la durabilidad a 10
+bool ItemsMagicos::getRecargaUasada() {
+    return recargaUsada;
+};
+bool ItemsMagicos::intentarRecargar() {
+    double prob = static_cast<double>(rand()) / RAND_MAX; // Genera un número aleatorio entre 0 y 1
+    
+    if (prob < 0.5) { // 50% de probabilidad de recargar
+        durabilidad = 2; // Recarga la durabilidad a 10
+        recargaUsada = true;
+
+        return true;
+    } else {
+        cout << "No se pudo recargar el item." << endl;
+        
+        return false;
+    }
 };
 
 
