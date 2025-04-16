@@ -55,11 +55,11 @@ class Mercenario : public Guerrero {
 class Gladiador : public Guerrero {
     /**/
     public:
-        Gladiador(int fuerza, int velocidad, float altura_cm);
+        Gladiador(int fuerza, int velocidad, int altura_cm);
 
         // Metodos
         void aumentarFuerza(); // Aumenta la fuerza al ganar un combate
     private:
-        float altura_cm;
-        int combatesGanados;
+        int altura_cm;
+        int combatesGanados = 0;
 };

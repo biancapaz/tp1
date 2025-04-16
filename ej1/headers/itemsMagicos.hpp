@@ -8,14 +8,14 @@ using namespace std;
 class Baston : public ItemsMagicos {
     public: 
         // Contenedor
-        Baston(int durabilidad, double largo);
+        Baston(int durabilidad, int largo_cm);
 
         // Metodos
         void usar() override;
         void showInfo() override;
 
     private:
-        double largo;
+        int largo_cm;
         //shared_ptr<LibroDeHechizos> libroAsociado;  // Si se usa la combinacion Baston + Libro 
         //shared_ptr<Amuleto> amuletoAsociado; // Si se usa la combinacion Baston + Amuleto
     };
@@ -47,7 +47,7 @@ class Pocion : public ItemsMagicos {
         void showInfo() override;
         
     private:
-        string efecto; // Puede ser: veneno, paralizante, envejecedora y lentificante
+        string efecto; // Puede ser: 0=veneno, 1=paralizante, 2=envejecedora, 3=lentificante
         bool esPermanente;
 };
 
@@ -63,5 +63,5 @@ class Amuleto : public ItemsMagicos {
         
     private:
         bool bonoSuerte;
-        shared_ptr<Baston> bastonAsociado; // Si se usa la combinacion Amuleto + Baston
+        //shared_ptr<Baston> bastonAsociado; // Si se usa la combinacion Amuleto + Baston
 };

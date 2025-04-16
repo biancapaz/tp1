@@ -1,4 +1,5 @@
 #pragma once
+#include "tipos.hpp"
 #include <armas.hpp>
 #include <string>
 #include <memory>
@@ -7,6 +8,7 @@ using namespace std;
 class Personaje {
     public:
         virtual string getNombre() = 0;
+        virtual TipoPersonaje getTipo() = 0;
         virtual int getHP() = 0;
         virtual string getArma() = 0;
         virtual bool estaVivo() = 0;
@@ -22,6 +24,7 @@ class Mago : public Personaje {
 
         // Metodos
         virtual string getNombre() override;
+        virtual TipoPersonaje getTipo() override;
         virtual int getHP() override;
         virtual string getArma() override;
         virtual bool estaVivo() override;
@@ -33,6 +36,7 @@ class Mago : public Personaje {
 
     protected:
         string nombre;
+        TipoPersonaje tipo = TipoPersonaje::MAGO;
         int HP = 100;
         int mana = 100; // Mana del mago
         int inteligencia;
@@ -49,6 +53,7 @@ class Guerrero : public Personaje {
 
         // Metodos
         virtual string getNombre() override;
+        virtual TipoPersonaje getTipo() override;
         virtual int getHP() override;
         virtual string getArma() override;
         virtual bool estaVivo() override;
@@ -60,6 +65,7 @@ class Guerrero : public Personaje {
 
     protected:
         string nombre;
+        TipoPersonaje tipo = TipoPersonaje::GUERRERO;
         int HP = 100;
         int fuerza;
         int velocidad;

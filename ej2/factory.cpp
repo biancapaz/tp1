@@ -131,10 +131,10 @@ shared_ptr<ItemsMagicos> crearItemMagico(TipoItemMagico tipo) {
 
     switch (tipo) {
         case TipoItemMagico::BASTON: {
-            double largo;
+            int largo_cm;
             cout << "Ingrese el largo del baston: ";
-            cin >> largo;
-            return make_shared<Baston>(durabilidad, largo);
+            cin >> largo_cm;
+            return make_shared<Baston>(durabilidad, largo_cm);
         }
         case TipoItemMagico::LIBRO_DE_HECHIZOS: {
             return make_shared<LibroDeHechizos>(durabilidad);

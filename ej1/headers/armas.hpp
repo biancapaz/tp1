@@ -29,7 +29,7 @@ class ItemsMagicos : public Arma { // Clase Abstracta
 
 class ArmasDeCombate : public Arma { // Clase Abstracta
     public:
-        ArmasDeCombate(string nombre, string material, double peso);
+        ArmasDeCombate(string nombre, string material, int peso_gr);
         virtual string getNombre() override;
         virtual double getDanio() override;
         virtual void usar() override = 0; // imprime los golpes
@@ -41,5 +41,5 @@ class ArmasDeCombate : public Arma { // Clase Abstracta
         string nombre; // Puede ser: hacha simple, hacha doble, espada, lanza y garrote.
         double danio = 10; // Para todas las armas
         string material; // Puede ser: piedra, madera y hierro
-        double peso; // Afeta en la energia del personaje al usarla
+        int peso_gr; // Afeta en la energia del personaje al usarla
 };

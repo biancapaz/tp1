@@ -11,6 +11,9 @@ Mago::Mago(string nombre, int inteligencia, int edad) : nombre(nombre), intelige
 string Mago::getNombre() {
     return nombre;
 };
+TipoPersonaje Mago::getTipo() {
+    return tipo;
+};
 int Mago::getHP() {
     return HP;
 };
@@ -59,6 +62,9 @@ Guerrero::Guerrero(string nombre, int fuerza, int velocidad) : nombre(nombre), f
 // Metodos
 string Guerrero::getNombre() {
     return nombre;
+};
+TipoPersonaje Guerrero::getTipo() {
+    return tipo;
 };
 int Guerrero::getHP() {
     return HP;

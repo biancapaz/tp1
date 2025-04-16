@@ -5,7 +5,7 @@ using namespace std;
 class HachaSimple : public ArmasDeCombate {
     public: 
         // Constructor
-        HachaSimple( string material, double peso, bool conGema);
+        HachaSimple(string material, int peso_gr, bool conGema);
 
         // Metodos
         void usar() override;
@@ -18,49 +18,49 @@ class HachaSimple : public ArmasDeCombate {
 class HachaDoble : public ArmasDeCombate {
     public: 
         // Constructor
-        HachaDoble( string material, double peso, double largo, bool filoExtra);
+        HachaDoble(string material, int peso_gr, int largo_cm, bool filoExtra);
 
         // Metodos
         void usar() override;
         void showInfo() override;
     
     private:
-        double largo;
+        int largo_cm;
         bool filoExtra;
 };
 
 class Espada : public ArmasDeCombate {
     public: 
         // Constructor
-        Espada( string material, double peso, double largo, bool tieneBrillo);
+        Espada( string material, int peso_gr, int largo_cm, bool tieneBrillo);
 
         // Metodos
         void usar() override;
         void showInfo() override;
     
     private:
-        double largo;
+        int largo_cm;
         bool tieneBrillo;
 };
 
 class Lanza : public ArmasDeCombate {
     public: 
         // Constructor
-        Lanza(string material, double peso, int largo, int cantidadPuntas);
+        Lanza(string material, int peso_gr, int largo_cm, int cantidadPuntas);
 
         // Metodos
         void usar() override;
         void showInfo() override;
     
     private:
-        double largo;
+        int largo_cm;
         int cantidadPuntas;
 };
 
 class Garrote : public ArmasDeCombate {
     public: 
         // Constructor
-        Garrote(string material, double peso, bool tienePicos, bool doblePunta);
+        Garrote(string material, int peso_gr, bool tienePicos, bool doblePunta);
 
         // Metodos
         void usar() override;

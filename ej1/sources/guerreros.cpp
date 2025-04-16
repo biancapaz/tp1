@@ -54,7 +54,7 @@ void Mercenario::recibirDinero(int dinero) {
 /* Implementacion Gladiador */
 
 // Constructor
-Gladiador::Gladiador(int fuerza, int velocidad, float altura_cm) : Guerrero("Gladiador", fuerza, velocidad), altura_cm(altura_cm) {};
+Gladiador::Gladiador(int fuerza, int velocidad, int altura_cm) : Guerrero("Gladiador", fuerza, velocidad), altura_cm(altura_cm) {};
 
 // Metodos
 void Gladiador::aumentarFuerza() {

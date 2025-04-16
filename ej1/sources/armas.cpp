@@ -22,7 +22,7 @@ void ItemsMagicos::recargar() {
 /*Implementacion Clase Abstracta AemasDeCombate*/ 
 
 // Constructor
-ArmasDeCombate::ArmasDeCombate(string nombre, string material, double peso) : nombre(nombre), material(material), peso(peso) {};
+ArmasDeCombate::ArmasDeCombate(string nombre, string material, int peso_gr) : nombre(nombre), material(material), peso_gr(peso_gr) {};
 
 // Metodos
 string ArmasDeCombate::getNombre() {
@@ -32,5 +32,5 @@ double ArmasDeCombate::getDanio() {
     return danio;
 };
 bool ArmasDeCombate::esPesada() {
-    return peso > 20; // Considera pesada si el peso es mayor a 20
+    return peso_gr > 20; // Considera pesada si el peso es mayor a 20
 };

@@ -5,7 +5,7 @@ using namespace std;
 /* Implementacion Baston */
 
 // Constructor
-Baston::Baston(int durabilidad, double largo) : ItemsMagicos("Baston", durabilidad), largo(largo) {};
+Baston::Baston(int durabilidad, int largo_cm) : ItemsMagicos("Baston", durabilidad), largo_cm(largo_cm) {};
 
 // Metodos
 void Baston::usar() {
@@ -22,7 +22,7 @@ void Baston::showInfo() {
     cout << "Nombre: " << nombre << endl;
     cout << "Daño: " << danio << endl;
     cout << "Durabilidad: " << durabilidad << endl;
-    cout << "Largo: " << largo << endl;
+    cout << "Largo: " << largo_cm << endl;
 };  
 
 
