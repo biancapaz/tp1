@@ -32,7 +32,7 @@ class HachaDoble : public ArmasDeCombate {
 class Espada : public ArmasDeCombate {
     public: 
         // Constructor
-        Espada( string material, int peso_gr, int largo_cm, bool tieneBrillo);
+        Espada(string material, int peso_gr, int largo_cm, bool tieneBrillo);
 
         // Metodos
         bool usar() override;

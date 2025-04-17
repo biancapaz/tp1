@@ -9,7 +9,7 @@ class Barbaro : public Guerrero {
         Barbaro(int fuerza, int velocidad, int nivelFuria);
     
         // Metodos
-        void gritar(); // Grito de guerra que aumenta la fuerza temporalmente
+        void gritar(); // Grito de guerra que aumenta la fuerza
     
     private:
         int nivelFuria;
@@ -29,7 +29,7 @@ class Paladin : public Guerrero {
 };
 
 class Caballero : public Guerrero {
-    /**/
+    /* Guerrero veloz y elegante que combate montado a caballo. */
     public:
         // Constructor
         Caballero(int fuerza, int velocidad, bool montado);
@@ -38,11 +38,11 @@ class Caballero : public Guerrero {
         void aumentarVelocidad(); // Se hace mas rapido al estar montado
 
     private:
-        bool montado; // Si esta en caballo tiene mas velocidad
+        bool montado; // Si esta en caballo
 };
 
 class Mercenario : public Guerrero {
-    /**/
+    /* Pelea por dinero, no por gloria. */
     public:
         Mercenario(int fuerza, int velocidad, int precio);
 
@@ -53,13 +53,12 @@ class Mercenario : public Guerrero {
 };
 
 class Gladiador : public Guerrero {
-    /**/
+    /* Lucha en la arena usando su gran altura. */
     public:
         Gladiador(int fuerza, int velocidad, int altura_cm);
 
         // Metodos
-        void aumentarFuerza(); // Aumenta la fuerza al ganar un combate
+        void saltarAlto(); // Aumenta la fuerza al ganar un combate
     private:
         int altura_cm;
-        int combatesGanados = 0;
 };

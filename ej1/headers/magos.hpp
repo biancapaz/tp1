@@ -4,21 +4,20 @@
 using namespace std;
 
 class Hechicero : public Mago { 
-    /* El Hechicero domina el fuego, hielo, rayo, etc. Su rol es hacer daño masivo con magia ofensiva. */
+    /* El Hechicero domina el fuego, hielo y el rayo. Su rol es hacer daño masivo con magia ofensiva. */
     public:
         // Constructor
         Hechicero(int inteligencia, int edad, string afinidadElemental);
     
         // Metodos
-        string elegirHechizo(); // Elige un hechizo de la lista de hechizos
-        void sobrecargaMagica(); // Consume mucho mana para lanzar 2 hechizos seguidos
+        void showFraseDePoder(); // Muestra una frase de poder dependiendo de la afinidad elemental
     
     private:
         string afinidadElemental; // Afinidad del hechicero:  0=fuego, 1=hielo, 2=rayo
 };
 
 class Conjurador : public Mago {
-    /* Maestro de la invocación de criaturas temporales para atacar o defender. */
+    /* Maestro de la invocación de criaturas temporales. */
     public:
         // Constructor
         Conjurador(int inteligencia, int edad, int cantidadDeCriaturas);
@@ -26,8 +25,7 @@ class Conjurador : public Mago {
         // Metodos
         void sacrificarCriatura(); // Recupera mana o HP sacrificando una invocación
     private:
-        int cantidadDeCriaturas;
-        //vector<string> criaturasInvocadas; // Lista de criaturas invocadas
+        int cantidadDeCriaturas; // Cantidad de criaturas invocadas
 };
 
 class Brujo : public Mago {

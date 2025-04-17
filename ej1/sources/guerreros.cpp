@@ -11,7 +11,7 @@ Barbaro::Barbaro(int fuerza, int velocidad, int nivelFuria) : Guerrero("Barbaro"
 // Metodos
 void Barbaro::gritar() {
     cout << "Grito de guerra! Aumentando fuerza temporalmente." << endl;
-    fuerza += 10; // Aumenta la fuerza temporalmente
+    fuerza += 10; // Aumenta la fuerza
 };
 
 /* Implementacion Paladin */
@@ -21,8 +21,17 @@ Paladin::Paladin(int fuerza, int velocidad, int nivelSagrado) : Guerrero("Paladi
 
 // Metodos
 void Paladin::curar() {
+    if (HP >= 100) {
+        cout << "HP ya está al máximo." << endl;
+        return;
+    }
+    if (nivelSagrado < 5) {
+        cout << "No tiene suficiente nivel sagrado para curar." << endl;
+        return;
+    }
     cout << "Curando HP..." << endl;
     HP += 5; // Restaura algo de HP
+    nivelSagrado--; // Reduce el nivel sagrado
 };
 
 /* Implementacion Caballero */
@@ -34,7 +43,7 @@ Caballero::Caballero(int fuerza, int velocidad, bool montado) : Guerrero("Caball
 void Caballero::aumentarVelocidad() {
     if (montado) {
         cout << "Aumentando velocidad al estar montado." << endl;
-        velocidad += 5; // Aumenta la velocidad al estar montado
+        velocidad += 10; // Aumenta la velocidad al estar montado
     } else {
         cout << "No se puede aumentar la velocidad sin estar montado." << endl;
     }
@@ -57,7 +66,11 @@ void Mercenario::recibirDinero(int dinero) {
 Gladiador::Gladiador(int fuerza, int velocidad, int altura_cm) : Guerrero("Gladiador", fuerza, velocidad), altura_cm(altura_cm) {};
 
 // Metodos
-void Gladiador::aumentarFuerza() {
-    cout << "Aumentando fuerza al ganar un combate." << endl;
-    fuerza += 10; // Aumenta la fuerza al ganar un combate
+void Gladiador::saltarAlto() {
+    if (altura_cm < 200) {
+        cout << "No puede saltar alto, necesita ser más alto." << endl;
+        return;
+    }
+    cout << "Saltando alto..." << endl;
+    energia -= 5; // Disminuye la energia
 };

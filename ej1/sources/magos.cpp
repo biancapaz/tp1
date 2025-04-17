@@ -10,9 +10,17 @@ using namespace std;
 Hechicero::Hechicero(int inteligencia, int edad, string afinidadElemental) : Mago("Hechicero", inteligencia, edad), afinidadElemental(afinidadElemental) {};
 
 // Metodos
-//string elegirHechizo() {};
-
-void Hechicero::sobrecargaMagica() {};
+void Hechicero::showFraseDePoder() {
+    if (afinidadElemental == "fuego") {
+        cout << "¡Que las llamas purifiquen este lugar!" << endl;
+    } 
+    else if (afinidadElemental == "hielo") {
+        cout << "El frío eterno será tu castigo." << endl;
+    } 
+    else {
+        cout << "¡El trueno es mi voluntad!" << endl;
+    }
+};
 
 /* Implementacion Conjurador */
 
@@ -23,7 +31,7 @@ Conjurador::Conjurador(int inteligencia, int edad, int cantidadDeCriaturas) : Ma
 void Conjurador::sacrificarCriatura() {
     if (cantidadDeCriaturas > 0) {
         cantidadDeCriaturas--;
-        HP += 10; // Recupera HP al sacrificar una invocación
+        mana += 10; // Recupera mana al sacrificar una invocación
     } else {
         cout << "No hay criaturas para sacrificar." << endl;
     }
@@ -38,9 +46,8 @@ Brujo::Brujo(int inteligencia, int edad, int energiaOscura, bool pactoConDemonio
 void Brujo::invocarDemonio() {
     if (pactoConDemonio) {
         cout << "Invocando demonio..." << endl;
-        // EL DAÑO TIENE QUE SER MAYOR CON EL DEMONIO
     } else {
-        cout << "No se puede invocar un demonio sin pacto." << endl;
+        cout << "No tiene pacto con el demonio." << endl;
     }
 };
 

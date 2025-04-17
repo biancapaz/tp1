@@ -7,7 +7,7 @@ using namespace std;
 // Constructor
 Mago::Mago(string nombre, int inteligencia, int edad) : nombre(nombre), inteligencia(inteligencia), edad(edad) {};
 
-// Metodos
+// Metodos Getters
 string Mago::getNombre() {
     return nombre;
 };
@@ -24,6 +24,7 @@ bool Mago::estaVivo() {
     return HP > 0;
 };
 
+// Metodos Combate
 void Mago::agregarArma(shared_ptr<Arma> item) {
     if (item1 == nullptr) {
         item1 = dynamic_pointer_cast<ItemsMagicos>(item);
@@ -86,12 +87,17 @@ int Mago::calcularDanioBase() {
     return static_cast<int>((inteligencia * 0.7 + mana * 0.2) - edad * 0.1);
 };
 
+
+
+
+
+
 /*Implementacion Clase Abstracta Guerrero*/
 
 // Constructor
 Guerrero::Guerrero(string nombre, int fuerza, int velocidad) : nombre(nombre), fuerza(fuerza), velocidad(velocidad) {};
 
-// Metodos
+// Metodos Getters
 string Guerrero::getNombre() {
     return nombre;
 };
@@ -108,6 +114,7 @@ bool Guerrero::estaVivo() {
     return HP > 0;
 };  
 
+// Metodos Combate
 void Guerrero::agregarArma(shared_ptr<Arma> arma) {
     if (arma1 == nullptr) {
         arma1 = dynamic_pointer_cast<ArmasDeCombate>(arma);

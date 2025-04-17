@@ -7,13 +7,14 @@ using namespace std;
 
 class Personaje {
     public:
+        // Getters
         virtual string getNombre() = 0;
         virtual TipoPersonaje getTipo() = 0;
         virtual int getHP() = 0;
         virtual shared_ptr<Arma> getArma() = 0;
         virtual bool estaVivo() = 0;
 
-
+        // Combate
         virtual void agregarArma(shared_ptr<Arma> arma) = 0;
         virtual int atacar() = 0;
         virtual void recibirDanio(int danio) = 0;
@@ -37,8 +38,6 @@ class Mago : public Personaje {
         virtual void recibirDanio(int danio) override;
         virtual int calcularDanioBase() override;
 
-        //virtual void regenerarMana();
-
     protected:
         string nombre;
         TipoPersonaje tipo = TipoPersonaje::MAGO;
@@ -47,9 +46,9 @@ class Mago : public Personaje {
         int inteligencia;
         int edad;
 
-        shared_ptr<ItemsMagicos> item1 = nullptr; // Item Magico 1 del mago
-        shared_ptr<ItemsMagicos> item2 = nullptr; // Item Magico 2 del mago
-        shared_ptr<ItemsMagicos> itemEnUso = item1;
+        shared_ptr<ItemsMagicos> item1 = nullptr; // Item Magico 1
+        shared_ptr<ItemsMagicos> item2 = nullptr; // Item Magico 2
+        shared_ptr<ItemsMagicos> itemEnUso = item1; // Siempre como defaul se usa el item 1
 };
 
 class Guerrero : public Personaje {
@@ -68,10 +67,7 @@ class Guerrero : public Personaje {
         virtual int atacar() override;
         virtual void recibirDanio(int danio) override;
         virtual int calcularDanioBase() override;
-
         virtual void cambiarArmaEnUso(); // Cambia el arma en uso
-
-        //virtual void regenerarEnergia();
 
     protected:
         string nombre;
