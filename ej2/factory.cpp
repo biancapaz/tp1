@@ -40,7 +40,7 @@ shared_ptr<Mago> crearMago(TipoMago tipo) {
         }
         case TipoMago::BRUJO: {
             int energiaOscura;
-            bool pactoConDemonio;
+            int pactoConDemonio;
 
             cout << "Ingrese la energia oscura del brujo: ";
             cin >> energiaOscura;
@@ -92,7 +92,7 @@ shared_ptr<Guerrero> crearGuerrero(TipoGuerrero tipo) {
             return make_shared<Paladin>(fuerza, velocidad, nivelSagrado);
         }
         case TipoGuerrero::CABALLERO: {
-            bool montado;
+            int montado;
             cout << "El caballero esta montado?: " << endl;
             cout << "0. No" << endl;
             cout << "1. Si" << endl;
@@ -176,7 +176,7 @@ shared_ptr<ItemsMagicos> crearItemMagico(TipoItemMagico tipo) {
         }
         case TipoItemMagico::POCION: {
             int efecto;
-            bool esPermanente;
+            int esPermanente;
             cout << "Ingrese el efecto de la pocion: " << endl;
             cout << "Seleccione el efecto de la poción:" << endl;
             cout << "0. Veneno" << endl;
@@ -203,7 +203,7 @@ shared_ptr<ItemsMagicos> crearItemMagico(TipoItemMagico tipo) {
             return make_shared<Pocion>(durabilidad, nombreEfecto, esPermanente);
         }
         case TipoItemMagico::AMULETO: {
-            bool bonoSuerte;
+            int bonoSuerte;
             cout << "El amuleto tiene bono de suerte?: " << endl;
             cout << "0. No" << endl;
             cout << "1. Si" << endl;
@@ -240,7 +240,7 @@ shared_ptr<ArmasDeCombate> crearArmaDeCombate(TipoArmaDeCombate tipo) {
 
     switch (tipo) {
         case TipoArmaDeCombate::HACHA_SIMPLE: {
-            bool conGema;
+            int conGema;
             cout << "El hacha simple tiene gema?: " << endl;
             cout << "0. No" << endl;
             cout << "1. Si" << endl;
@@ -254,7 +254,7 @@ shared_ptr<ArmasDeCombate> crearArmaDeCombate(TipoArmaDeCombate tipo) {
         }
         case TipoArmaDeCombate::HACHA_DOBLE: {
             int largo;
-            bool filoExtra;
+            int filoExtra;
             cout << "Ingrese el largo del hacha doble: ";
             cin >> largo;
             cout << "El hacha doble tiene filo extra?: " << endl;
@@ -270,7 +270,7 @@ shared_ptr<ArmasDeCombate> crearArmaDeCombate(TipoArmaDeCombate tipo) {
         }
         case TipoArmaDeCombate::ESPADA: {
             int largo;
-            bool tieneBrillo;
+            int tieneBrillo;
             cout << "Ingrese el largo de la espada: ";
             cin >> largo;
             cout << "La espada tiene brillo?: " << endl;
@@ -294,8 +294,8 @@ shared_ptr<ArmasDeCombate> crearArmaDeCombate(TipoArmaDeCombate tipo) {
             return make_shared<Lanza>(nombreMaterial, peso, largo, cantidadPuntas);
         }
         case TipoArmaDeCombate::GARROTE: {
-            bool tienePicos;
-            bool doblePunta;
+            int tienePicos;
+            int doblePunta;
             cout << "El garrote tiene picos?: " << endl;
             cout << "0. No" << endl;
             cout << "1. Si" << endl;
@@ -305,7 +305,7 @@ shared_ptr<ArmasDeCombate> crearArmaDeCombate(TipoArmaDeCombate tipo) {
                 cin >> tienePicos;
             }
 
-            cout << "El garrote tiene doble punta?: ";
+            cout << "El garrote tiene doble punta?: " << endl;
             cout << "0. No" << endl;
             cout << "1. Si" << endl;
             cin >> doblePunta;

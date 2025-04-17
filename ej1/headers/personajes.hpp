@@ -16,9 +16,10 @@ class Personaje {
 
         // Combate
         virtual void agregarArma(shared_ptr<Arma> arma) = 0;
-        virtual int atacar() = 0;
+        virtual int atacar(Personaje& enemigo) = 0;
         virtual void recibirDanio(int danio) = 0;
         virtual int calcularDanioBase() = 0;
+        virtual void postCombate(bool gano) = 0;
 };
 
 class Mago : public Personaje {
@@ -34,9 +35,10 @@ class Mago : public Personaje {
         virtual bool estaVivo() override;
 
         virtual void agregarArma(shared_ptr<Arma> arma) override;
-        virtual int atacar() override;
+        virtual int atacar(Personaje& enemigo) override;
         virtual void recibirDanio(int danio) override;
         virtual int calcularDanioBase() override;
+        virtual void postCombate(bool gano) override;
 
     protected:
         string nombre;
@@ -45,6 +47,9 @@ class Mago : public Personaje {
         int mana = 100; // Mana del mago
         int inteligencia;
         int edad;
+
+        int batallasGanadas = 0; // Cantidad de batallas ganadas
+        int batallasPerdidas = 0; // Cantidad de batallas perdidas
 
         shared_ptr<ItemsMagicos> item1 = nullptr; // Item Magico 1
         shared_ptr<ItemsMagicos> item2 = nullptr; // Item Magico 2
@@ -64,10 +69,11 @@ class Guerrero : public Personaje {
         virtual bool estaVivo() override;
 
         virtual void agregarArma(shared_ptr<Arma> arma) override;
-        virtual int atacar() override;
+        virtual int atacar(Personaje& enemigo) override;
         virtual void recibirDanio(int danio) override;
         virtual int calcularDanioBase() override;
         virtual void cambiarArmaEnUso(); // Cambia el arma en uso
+        virtual void postCombate(bool gano) override;
 
     protected:
         string nombre;
@@ -76,6 +82,9 @@ class Guerrero : public Personaje {
         int fuerza;
         int velocidad;
         double energia = 100; // Energia del guerrero
+
+        int batallasGanadas = 0; // Cantidad de batallas ganadas
+        int batallasPerdidas = 0; // Cantidad de batallas perdidas
 
         shared_ptr<ArmasDeCombate> arma1 = nullptr; // Arma 1 del guerrero
         shared_ptr<ArmasDeCombate> arma2 = nullptr; // Arma 2 del guerrero

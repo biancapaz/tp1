@@ -9,7 +9,8 @@ class Barbaro : public Guerrero {
         Barbaro(int fuerza, int velocidad, int nivelFuria);
     
         // Metodos
-        void gritar(); // Grito de guerra que aumenta la fuerza
+        int atacar(Personaje& enemigo) override; // Ataca al enemigo
+        void gritar(); // Grito de guerra que aumenta la fuerza y el nivelFuria
     
     private:
         int nivelFuria;
@@ -35,6 +36,7 @@ class Caballero : public Guerrero {
         Caballero(int fuerza, int velocidad, bool montado);
     
         // Metodos
+        int atacar(Personaje& enemigo) override; // Ataca al enemigo
         void aumentarVelocidad(); // Se hace mas rapido al estar montado
 
     private:
@@ -44,10 +46,11 @@ class Caballero : public Guerrero {
 class Mercenario : public Guerrero {
     /* Pelea por dinero, no por gloria. */
     public:
-        Mercenario(int fuerza, int velocidad, int precio);
+        Mercenario(int fuerza, int velocidad, int dinero);
 
         // Metodos
-        void recibirDinero(int dinero);
+        void postCombate(bool gano) override; // Si gana, cobra el dinero
+        void recibirDinero();
     private:
         int dineroGanado;
 };
@@ -58,7 +61,7 @@ class Gladiador : public Guerrero {
         Gladiador(int fuerza, int velocidad, int altura_cm);
 
         // Metodos
-        void saltarAlto(); // Aumenta la fuerza al ganar un combate
+        void saltarAlto(); // Salta alto para atacar
     private:
         int altura_cm;
 };

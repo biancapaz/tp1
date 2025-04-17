@@ -168,7 +168,7 @@ pair<Ataque, Ataque> definirAtaque(shared_ptr<Personaje> p1, shared_ptr<Personaj
     return make_pair(static_cast<Ataque>(ataque1), static_cast<Ataque>(ataque2));
 }
 
-shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2) {
+pair<shared_ptr<Personaje>, shared_ptr<Personaje>> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2) {
     cout << endl;
     cout << "COMBATE ENTRE " << p1->getNombre() << " y " << p2->getNombre() << endl;
 
@@ -185,13 +185,13 @@ shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2
             case Ataque::GOLPE_FUERTE : {
                 if (ataques.second == Ataque::GOLPE_RAPIDO) { // FUERTE > RAPIDO
 
-                    int danio = p1->atacar();
+                    int danio = p1->atacar(*p2);
                     p2->recibirDanio(danio);
                     cout << "El " << p1->getNombre() << " ataca con " << p1->getArma()->getNombre() <<  " y hace " << danio << " puntos de daño." << endl;
                 }
                 else { // ataques.second == Ataque::DEFENSA_GOLPE --> FUERTE < DEFENSA_GOLPE
 
-                    int danio = p2->atacar();
+                    int danio = p2->atacar(*p1);
                     p1->recibirDanio(danio);
                     cout << "El " << p2->getNombre() << " ataca con "  << p2->getArma()->getNombre() <<  " y hace " << danio << " puntos de daño." << endl;
                 }
@@ -200,13 +200,13 @@ shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2
             case Ataque::GOLPE_RAPIDO : {
                 if (ataques.second == Ataque::DEFENSA_GOLPE) { // RAPIDO > DEFENSA_GOLPE
 
-                    int danio = p1->atacar();
+                    int danio = p1->atacar(*p2);
                     p2->recibirDanio(danio);
                     cout << "El " << p1->getNombre() << " ataca con " << p1->getArma()->getNombre() << " y hace " << danio << " puntos de daño." << endl;
                 }
                 else { // ataques.second == Ataque::GOLPE_FUERTE --> RAPIDO < FUERTE
 
-                    int danio = p2->atacar();
+                    int danio = p2->atacar(*p1);
                     p1->recibirDanio(danio);
                     cout << "El " << p2->getNombre() << " ataca con " << p2->getArma()->getNombre() << " y hace " << danio << " puntos de daño." << endl;
                 }
@@ -215,13 +215,13 @@ shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2
             case Ataque::DEFENSA_GOLPE : {
                 if (ataques.second == Ataque::GOLPE_FUERTE) { // DEFENSA_GOLPE > FUERTE
 
-                    int danio = p1->atacar();
+                    int danio = p1->atacar(*p2);
                     p2->recibirDanio(danio);
                     cout << "El " << p1->getNombre() << " ataca con " << p1->getArma()->getNombre() << " y hace " << danio << " puntos de daño." << endl;
                 }
                 else { // ataques.second == Ataque::GOLPE_RAPIDO --> DEFENSA_GOLPE < RAPIDO
 
-                    int danio = p2->atacar();
+                    int danio = p2->atacar(*p1);
                     p1->recibirDanio(danio);
                     cout << "El " << p2->getNombre() << " ataca con " << p2->getArma()->getNombre() << " y hace " << danio << " puntos de daño." << endl;
                 }
@@ -229,7 +229,7 @@ shared_ptr<Personaje> combate(shared_ptr<Personaje> p1, shared_ptr<Personaje> p2
             }
         }
     }
-    return (p1->estaVivo() ? p1 : p2);        
+    return (p1->estaVivo() ? make_pair(p1, p2) : make_pair(p2, p1));        
 }
 
 int main() {
@@ -271,6 +271,9 @@ int main() {
         cout<< endl;
     }  
     
-    shared_ptr<Personaje> winner = combate(p1, p2);
-    cout << "GANADOR: " << winner->getNombre() << " con " << winner->getHP() << " puntos de HP restantes."  << endl;
+    pair<shared_ptr<Personaje>, shared_ptr<Personaje>> results = combate(p1, p2);
+    cout << "GANADOR: " << results.first->getNombre() << " con " << results.first->getHP() << " puntos de HP restantes."  << endl;
+
+    results.first->postCombate(true);
+    results.second->postCombate(false);
 } 

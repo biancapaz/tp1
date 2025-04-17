@@ -16,8 +16,6 @@ class Baston : public ItemsMagicos {
 
     private:
         int largo_cm;
-        //shared_ptr<LibroDeHechizos> libroAsociado;  // Si se usa la combinacion Baston + Libro 
-        //shared_ptr<Amuleto> amuletoAsociado; // Si se usa la combinacion Baston + Amuleto
     };
 
 class LibroDeHechizos : public ItemsMagicos {
@@ -29,11 +27,9 @@ class LibroDeHechizos : public ItemsMagicos {
         bool usar() override;
         void showInfo() override;
 
-        void setConBaston(bool cond);
         void agregarHechizo(string hechizo);
 
     protected:
-        bool conBaston = false; // Si se usa la combinacion Baston + Libro
         vector<string> listaHechizos = {"Bola de fuego", "Tormenta de rayos", "Rayo congelante", "Maleficio sagrado", "Contraconjuro", "Tormenta de hielo"};    
 };
 

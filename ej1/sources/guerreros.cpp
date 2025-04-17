@@ -9,9 +9,14 @@ using namespace std;
 Barbaro::Barbaro(int fuerza, int velocidad, int nivelFuria) : Guerrero("Barbaro", fuerza, velocidad), nivelFuria(nivelFuria) {};
 
 // Metodos
+int Barbaro::atacar(Personaje& enemigo) {
+    gritar(); // Grito de guerra
+    return Guerrero::atacar(enemigo);
+};
 void Barbaro::gritar() {
-    cout << "Grito de guerra! Aumentando fuerza temporalmente." << endl;
-    fuerza += 10; // Aumenta la fuerza
+    cout << "Grito de guerra! Aumentando fuerza." << endl;
+    fuerza += 5; // Aumenta la fuerza
+    nivelFuria += 1;
 };
 
 /* Implementacion Paladin */
@@ -40,10 +45,14 @@ void Paladin::curar() {
 Caballero::Caballero(int fuerza, int velocidad, bool montado) : Guerrero("Caballero", fuerza, velocidad), montado(montado) {};
 
 // Metodos
+int Caballero::atacar(Personaje& enemigo) {
+    aumentarVelocidad(); // Aumenta la velocidad al atacar
+    return Guerrero::atacar(enemigo);
+};
 void Caballero::aumentarVelocidad() {
     if (montado) {
         cout << "Aumentando velocidad al estar montado." << endl;
-        velocidad += 10; // Aumenta la velocidad al estar montado
+        velocidad += 5; // Aumenta la velocidad al estar montado
     } else {
         cout << "No se puede aumentar la velocidad sin estar montado." << endl;
     }
@@ -52,12 +61,24 @@ void Caballero::aumentarVelocidad() {
 /* Implementacion Mercenario */
 
 // Constructor
-Mercenario::Mercenario(int fuerza, int velocidad, int precio) : Guerrero("Mercenario", fuerza, velocidad), dineroGanado(0) {};
+Mercenario::Mercenario(int fuerza, int velocidad, int dinero) : Guerrero("Mercenario", fuerza, velocidad), dineroGanado(dinero) {};
 
 // Metodos
-void Mercenario::recibirDinero(int dinero) {
-    cout << "Recibiendo dinero por el trabajo." << endl;
-    dineroGanado += dinero; // Aumenta el dinero ganado
+void Mercenario::postCombate(bool gano) {
+    if (gano) {
+        cout << "Ganó la batalla, cobrando el dinero." << endl;
+        dineroGanado += 100; // Cobra el dinero si gana
+        batallasGanadas++;
+    } else {
+        cout << "Perdió la batalla, no cobra nada." << endl;
+        batallasPerdidas++;
+    }
+    HP = 100; // Restaura el HP al 100%
+    energia = 100; // Restaura la energia al 100%
+};
+void Mercenario::recibirDinero() {
+    cout << "Recibiendo dinero por ganar la batalla." << endl;
+    dineroGanado += 100; // Aumenta el dinero ganado
 };
 
 /* Implementacion Gladiador */

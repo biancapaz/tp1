@@ -18,7 +18,7 @@ class ItemsMagicos : public Arma { // Clase Abstracta
         virtual bool usar() override = 0; // se usa especifico para cada arma porque tienen diferentes atributos
         virtual void showInfo() override = 0; // se muestar especifico para cada arma porque tienen diferentes atributos
 
-        virtual bool getRecargaUasada();
+        virtual bool getRecargaUasada();  // devuelve si se uso la recarga
         virtual bool intentarRecargar(); // recarga la durabilidad
 
     protected:
@@ -36,7 +36,7 @@ class ArmasDeCombate : public Arma { // Clase Abstracta
         virtual bool usar() override = 0; // imprime los golpes
         virtual void showInfo() override = 0; // muestra la informacion de cada arma
 
-        virtual bool esPesada();
+        virtual bool esPesada(); // devuelve si el arma es pesada
 
     protected:
         string nombre; // Puede ser: hacha simple, hacha doble, espada, lanza y garrote.

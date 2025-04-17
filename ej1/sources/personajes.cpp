@@ -35,7 +35,7 @@ void Mago::agregarArma(shared_ptr<Arma> item) {
         cout << "No se pueden agregar mas items magicos." << endl;
     }
 };
-int Mago::atacar() {
+int Mago::atacar(Personaje& enemigo) {
     if (!item1) { // Si no tiene item1 tampoco tiene item2, se da por perdida la jugada
         cout << "No tiene un item magico equipado." << endl;
         cout << "No puede atacar." << endl;
@@ -59,7 +59,7 @@ int Mago::atacar() {
             }
         }
         else { // Si no tiene item 2, pierde
-            cout << "No tiene mas items magicos para usar." << endl;
+            cout << "No tiene mas items magicos para usar. Tiene que perder." << endl;
             HP = 0; // Si no tiene mas items, pierde
             return 0;
         }
@@ -86,7 +86,16 @@ void Mago::recibirDanio(int danio) {
 int Mago::calcularDanioBase() {
     return static_cast<int>((inteligencia * 0.7 + mana * 0.2) - edad * 0.1);
 };
-
+void Mago::postCombate(bool gano) {
+    if (gano) {
+        
+        batallasGanadas++;
+    } else {
+        batallasPerdidas++;
+    }
+    HP = 100; // Restaura el HP al 100%
+    mana = 100; // Restaura el mana al 100%
+};
 
 
 
@@ -125,7 +134,7 @@ void Guerrero::agregarArma(shared_ptr<Arma> arma) {
         cout << "No se pueden agregar mas armas de combate." << endl;
     }
 };
-int Guerrero::atacar() {
+int Guerrero::atacar(Personaje& enemigo) {
     if (!armaEnUso) {
         cout << "No tiene un arma de combate equipada." << endl;
         HP = 0;
@@ -154,7 +163,7 @@ void Guerrero::recibirDanio(int danio) {
     }
 };
 int Guerrero::calcularDanioBase() {
-    return static_cast<int>(fuerza * 0.6 + velocidad * 0.5);
+    return static_cast<int>(fuerza * 0.3 + velocidad * 0.2 + energia * 0.1);
 };
 void Guerrero::cambiarArmaEnUso() {
     if (arma1->getNombre() == arma1->getNombre()) {
@@ -162,4 +171,13 @@ void Guerrero::cambiarArmaEnUso() {
     } else {
         armaEnUso = arma1;
     }
+};
+void Guerrero::postCombate(bool gano) {
+    if (gano) {
+        batallasGanadas++;
+    } else {
+        batallasPerdidas++;
+    }
+    HP = 100; // Restaura el HP al 100%
+    energia = 100; // Restaura la energia al 100%
 };

@@ -49,15 +49,10 @@ void LibroDeHechizos::showInfo() {
     cout << "Nombre: " << nombre << endl;
     cout << "Daño: " << danio << endl;
     cout << "Durabilidad: " << durabilidad << endl;
-    cout << "Tiene baston asociado: " << (conBaston ? "Si" : "No") << endl;
     cout << "Lista de hechizos: " << endl;
     for (int i = 0; i < listaHechizos.size(); i++) {
         cout << " - " << listaHechizos[i] << endl;
     }
-};
-
-void LibroDeHechizos::setConBaston(bool cond) {
-    conBaston = cond;
 };
 
 void LibroDeHechizos::agregarHechizo(string hechizo) {
